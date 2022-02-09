@@ -1,1 +1,12 @@
-<p>auth works!</p>
+<div class="content" role="main">
+
+
+  <button (click)="authenticate()" class="auth">Authenticate</button>
+  <br>
+
+  Error: {{error|json}}
+  <br>
+
+  <strong>User:</strong> {{googleUser?.getBasicProfile().getEmail() | json}}, {{googleUser?.getBasicProfile().getId() | json}}
+
+</div>

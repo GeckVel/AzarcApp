@@ -15,9 +15,9 @@ export class AppComponent implements OnInit {
   public googleUser: any;
 
   async ngOnInit(): Promise<void> {
-    if (await this.checkIfUserAuthenticated()) {
-      this.googleUser = this.authInstance.currentUser.get();
-    }
+    // if (await this.checkIfUserAuthenticated()) {
+    //   this.googleUser = this.authInstance.currentUser.get();
+    // }
   }
 
   async initGoogleAuth(): Promise<void> {
