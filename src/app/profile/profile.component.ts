@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../core/models/user.model';
 import { GoogleAuthService } from '../core/services/google-auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +18,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: GoogleAuthService,
     private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
   ) {
     this.userDetailsForm = this.formBuilder.group({
       residentialAddress: [''],
@@ -38,6 +40,12 @@ export class ProfileComponent implements OnInit {
     if (this.userDetailsForm.dirty) {
       this.user = {...this.user, ...this.userDetailsForm.value};
       this.userService.storeUser(this.user);
+
+      this.snackBar.open('Your profile successfully updated', 'OK', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000
+      });
     }
   }
 
