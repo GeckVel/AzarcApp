@@ -9,6 +9,8 @@ import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { ProfileModule } from './profile/profile.module';
+import { FakeBackendProvider } from './core/interceptors/fake-backend.interceptor';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,13 @@ import { ProfileModule } from './profile/profile.module';
     AuthModule,
     DashboardModule,
     ProfileModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
-  providers: [GoogleAuthService],
+  providers: [
+    GoogleAuthService,
+    FakeBackendProvider,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

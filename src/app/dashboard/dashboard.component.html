@@ -1,10 +1,10 @@
+<input matInput type="text" [(ngModel)]="searchText" placeholder="Search...">
 
-dashboard
+<mat-card *ngFor="let employee of employeesList | filterEmployees : searchText">
+  <mat-card-title>{{employee.name}}</mat-card-title>
+  <mat-card-subtitle>{{employee.email}}</mat-card-subtitle>
 
-zxczx
-c
-zx
-c
-zx
-c
-zxc
+  <mat-card-content>
+    <p>{{employee.role}}</p>
+  </mat-card-content>
+</mat-card>

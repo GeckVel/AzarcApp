@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+
+  mat-card {
+    margin-top: 1rem;
+
+    mat-card-title {
+      font-size: 20px;
+    }
+  }
+}
