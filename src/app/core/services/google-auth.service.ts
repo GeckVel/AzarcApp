@@ -68,8 +68,11 @@ export class GoogleAuthService {
     const email = googleProfile.getEmail();
 
     const userChecked = GoogleAuthService.checkUser({name, email});
-    this.$currentUser.next(userChecked);
+    this.storeUser(userChecked);
+  }
 
-    localStorage.setItem('currentUser', JSON.stringify(userChecked));
+  storeUser(user: User): void {
+    this.$currentUser.next(user);
+    localStorage.setItem('currentUser', JSON.stringify(user));
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../core/models/user.model';
 import { GoogleAuthService } from '../core/services/google-auth.service';
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -12,11 +12,16 @@ export class ProfileComponent implements OnInit {
   user!: User;
   locationList?: string[];
   officeLocation = '';
+  userDetailsForm: FormGroup;
 
   constructor(
     private userService: GoogleAuthService,
     private formBuilder: FormBuilder,
   ) {
+    this.userDetailsForm = this.formBuilder.group({
+      residentialAddress: [''],
+      officeLocation: [''],
+    });
   }
 
   ngOnInit(): void {
@@ -24,13 +29,15 @@ export class ProfileComponent implements OnInit {
       .subscribe(data => {
         this.user = data;
         this.officeLocation = this.user.officeLocation || '';
+        this.userDetailsForm.patchValue(this.user);
       });
     this.locationList = ['Los Angeles', 'Cape Town', 'London'];
   }
 
   saveData(): void {
-    if (this.officeLocation.length) {
-      this.user.officeLocation = this.officeLocation;
+    if (this.userDetailsForm.dirty) {
+      this.user = {...this.user, ...this.userDetailsForm.value};
+      this.userService.storeUser(this.user);
     }
   }
 
