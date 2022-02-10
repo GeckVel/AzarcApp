@@ -8,7 +8,7 @@ import { GoogleAuthService } from '../services/google-auth.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private gas: GoogleAuthService,
+    private googleAuthService: GoogleAuthService,
     private router: Router
   ) {}
 
@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
 
 
     return new Promise((resolve) => {
-      this.gas.checkIfUserAuthenticated()
+      this.googleAuthService.checkIfUserAuthenticated()
         .then((isAuthenticated: boolean) => {
           if (!isAuthenticated) {
             this.navigateToLogin();

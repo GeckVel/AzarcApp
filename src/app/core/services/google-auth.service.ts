@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { ReplaySubject } from 'rxjs';
+import { User } from '../models/user.model';
 declare let gapi: any;
 
 @Injectable({
@@ -8,8 +10,17 @@ declare let gapi: any;
 export class GoogleAuthService {
   gapiIsLoaded = false;
   authInstance: any;
+  $currentUser: ReplaySubject<User> = new ReplaySubject(1);
 
-  constructor() { }
+  static checkUser(newUser: User): User {
+    const storedUser = localStorage.getItem('currentUser');
+    const currentUser = !!storedUser ? JSON.parse(storedUser) : {name: null, email: null};
+    if (currentUser?.name === newUser.name && currentUser.email === newUser.email) {
+      return currentUser;
+    } else {
+      return newUser;
+    }
+  }
 
   async initGoogleAuth(): Promise<void> {
     const pload = new Promise((resolve) => {
@@ -39,6 +50,25 @@ export class GoogleAuthService {
       await this.initGoogleAuth();
     }
 
-    return this.authInstance.isSignedIn.get();
+    if (this.authInstance.isSignedIn.get()) {
+      this.setGoogleUser(this.authInstance.currentUser.get().getBasicProfile());
+      return true;
+    }
+
+    return false;
+  }
+
+  logoutUser(): void {
+    this.authInstance.signOut();
+  }
+
+  setGoogleUser(googleProfile: any): void {
+    const name = googleProfile.getName();
+    const email = googleProfile.getEmail();
+
+    const userChecked = GoogleAuthService.checkUser({name, email});
+    this.$currentUser.next(userChecked);
+
+    localStorage.setItem('currentUser', JSON.stringify(userChecked));
   }
 }

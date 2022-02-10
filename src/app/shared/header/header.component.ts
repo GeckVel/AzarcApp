@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from "../../core/models/user.model";
-import { UserService } from "../../core/services/user.service";
+import { User } from '../../core/models/user.model';
+import { GoogleAuthService } from '../../core/services/google-auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,11 +11,21 @@ import { UserService } from "../../core/services/user.service";
 export class HeaderComponent implements OnInit {
   user?: User;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: GoogleAuthService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
     this.userService.$currentUser
       .subscribe(data => this.user = data);
+  }
+
+  logoutUser(): void {
+    this.userService.logoutUser();
+    localStorage.removeItem('currentUser');
+    this.router.navigateByUrl('/login');
   }
 
 }

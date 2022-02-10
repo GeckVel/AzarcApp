@@ -13,13 +13,23 @@
     <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>edit</mat-icon>
-      <span>{{user?.name}}</span>
-    </button>
-    <button mat-menu-item routerLink="/login">
-      <mat-icon>login</mat-icon>
-      <span>LogIn</span>
-    </button>
+    <ng-container *ngIf="user?.name && user?.email; else loginBlock">
+      <button mat-menu-item routerLink="/profile">
+        <mat-icon>edit</mat-icon>
+        <span>{{user?.name}}</span>
+      </button>
+
+      <button mat-menu-item (click)="logoutUser()" color="warn">
+        <mat-icon>logout</mat-icon>
+        <span>Exit</span>
+      </button>
+    </ng-container>
   </mat-menu>
 </mat-toolbar>
+
+<ng-template #loginBlock>
+  <button mat-menu-item routerLink="/login">
+    <mat-icon>login</mat-icon>
+    <span>LogIn</span>
+  </button>
+</ng-template>

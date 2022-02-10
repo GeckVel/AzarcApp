@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GoogleAuthService } from '../core/services/google-auth.service';
-import { UserService } from '../core/services/user.service';
-declare let gapi: any;
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -14,15 +13,15 @@ export class AuthComponent {
 
   constructor(
     private googleAuthService: GoogleAuthService,
-    private userService: UserService
-  ) { }
+    private router: Router
+  ) {
+  }
 
   authenticate(): void {
     this.googleAuthService.authenticate().then(
       (gResponse: any) => {
-        console.log('asdasd');
-        this.googleUser = gResponse.getBasicProfile();
-        this.userService.setGoogleUser(this.googleUser);
+        this.googleUser = gResponse;
+        this.router.navigateByUrl('/');
       },
       (error: string) => this.error = error
     );
