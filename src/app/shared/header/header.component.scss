@@ -4,8 +4,8 @@ mat-toolbar {
   .app-icon {
     display: flex;
     border: none;
-    width: 4rem;
-    height: 100%;
+    //width: 4rem;
+    //height: 100%;
     background-color: transparent;
     padding: 0;
     cursor: pointer;
@@ -13,8 +13,13 @@ mat-toolbar {
     mat-icon {
       font-size: 2.5rem;
       margin: auto;
-      height: 2.5rem;
       width: 2.5rem;
     }
+  }
+
+  mat-icon {
+    font-size: 2.5rem;
+    margin: auto;
+    width: 2.5rem;
   }
 }

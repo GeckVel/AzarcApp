@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.userService.checkIfUserAuthenticated();
     this.userService.$currentUser
       .subscribe(data => this.user = data);
   }

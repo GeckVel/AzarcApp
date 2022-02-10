@@ -5,6 +5,7 @@ import { ProfileComponent } from './profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
     ]),
     MatCardModule,
     MatSelectModule,
+    MatButtonModule,
   ]
 })
 export class ProfileModule { }

@@ -6,7 +6,7 @@
       <mat-form-field appearance="fill">
         <mat-label>User work location</mat-label>
         <mat-select>
-          <mat-option *ngFor="let location of locationList" [(ngModel)]="user.officeLocation">
+          <mat-option *ngFor="let location of locationList" [(ngModel)]="officeLocation">
             {{location}}
           </mat-option>
         </mat-select>
@@ -15,7 +15,7 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-button (click)="saveData()">Save</button>
-    <button mat-button>Cancel</button>
+    <button mat-flat-button (click)="saveData()" color="primary">Save</button>
+    <button mat-flat-button routerLink="/" color="accent">Cancel</button>
   </mat-card-actions>
 </mat-card>

@@ -60,6 +60,7 @@ export class GoogleAuthService {
 
   logoutUser(): void {
     this.authInstance.signOut();
+    this.checkIfUserAuthenticated();
   }
 
   setGoogleUser(googleProfile: any): void {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../core/models/user.model';
 import { GoogleAuthService } from '../core/services/google-auth.service';
+import { FormBuilder } from "@angular/forms";
 
 @Component({
   selector: 'app-profile',
@@ -12,8 +13,10 @@ export class ProfileComponent implements OnInit {
   locationList?: string[];
   officeLocation = '';
 
-  constructor(private userService: GoogleAuthService) {
-
+  constructor(
+    private userService: GoogleAuthService,
+    private formBuilder: FormBuilder,
+  ) {
   }
 
   ngOnInit(): void {

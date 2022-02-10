@@ -1,12 +1,13 @@
-<div class="content" role="main">
+<mat-card>
+  <mat-card-title>Please login</mat-card-title>
+  <mat-card-subtitle>push button google authorization</mat-card-subtitle>
 
+  <mat-card-content>
+    <button mat-flat-button (click)="authenticate()" color="accent">
+      <img src="../../assets/svg/icons8-google.svg" alt="" class="google-icon">
+      <span>LogIn</span>
+    </button>
+  </mat-card-content>
+</mat-card>
 
-  <button (click)="authenticate()" class="auth">Authenticate</button>
-  <br>
-
-  Error: {{error|json}}
-  <br>
-
-  <strong>User:</strong> {{googleUser?.getEmail() | json}}, {{googleUser?.getId() | json}}
-
-</div>
+Error: {{error|json}}
