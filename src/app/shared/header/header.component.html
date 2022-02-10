@@ -1,0 +1,25 @@
+<mat-toolbar>
+  <button mat-icon-button
+          color="warn"
+          class="app-icon"
+          routerLink="/"
+  >
+    <mat-icon>hdr_auto</mat-icon>
+  </button>
+
+  <h1>Azarc App</h1>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>edit</mat-icon>
+      <span>{{user?.name}}</span>
+    </button>
+    <button mat-menu-item routerLink="/login">
+      <mat-icon>login</mat-icon>
+      <span>LogIn</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

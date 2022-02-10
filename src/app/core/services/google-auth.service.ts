@@ -31,7 +31,7 @@ export class GoogleAuthService {
       await this.initGoogleAuth();
     }
 
-    return new Promise(async () => await this.authInstance.signIn());
+    return await this.authInstance.signIn();
   }
 
   async checkIfUserAuthenticated(): Promise<boolean> {

@@ -7,7 +7,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GoogleAuthService } from './core/services/google-auth.service';
 import { AuthModule } from './auth/auth.module';
-import { DashboardModule } from "./dashboard/dashboard.module";
+import { DashboardModule } from './dashboard/dashboard.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DashboardModule } from "./dashboard/dashboard.module";
     BrowserAnimationsModule,
     AuthModule,
     DashboardModule,
+    SharedModule
   ],
   providers: [GoogleAuthService],
   bootstrap: [AppComponent]
